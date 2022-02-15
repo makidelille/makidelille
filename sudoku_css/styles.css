@@ -1,0 +1,122 @@
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(9, auto);
+  grid-template-rows: repeat(9, auto);
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+}
+
+.selector .number {
+  display: flex;
+  border: 1px solid grey;
+  width: 50px;
+  aspect-ratio: 1;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.selector {
+  display: grid;
+  width: auto;
+  grid-template-columns: repeat(3, auto);
+  grid-template-rows: repeat(3, auto);
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+}
+
+input[type="checkbox"]:checked + .selector label {
+  z-index: 1;
+}
+
+input[type="checkbox"]:checked + .selector label,
+input[type="checkbox"]:not(:checked)
+  + .selector
+  input[type="radio"]:checked
+  + label,
+input[type="checkbox"]:not(:checked)
+  + .selector
+  input[type="radio"]:not(:checked)
+  ~ p {
+  display: flex;
+}
+
+input[type="checkbox"],
+input[type="checkbox"] + .selector input,
+input[type="checkbox"] + .selector label,
+input[type="checkbox"] + .selector p,
+input[type="checkbox"]:checked + .selector p,
+input[type="checkbox"]:not(:checked)
+  + .selector
+  input[type="radio"]:checked
+  ~ p {
+  display: none;
+}
+
+input[type="checkbox"]:checked + .selector::after {
+  content: "";
+  display: block;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.8;
+  background-color: black;
+}
+
+input[type="checkbox"]:not(:checked)
+  + .selector
+  input[type="radio"]:checked
+  + label {
+  pointer-events: none;
+}
+
+input[type="checkbox"]:checked + .selector input[type="radio"]:checked + label {
+  background-color: grey;
+}
+input[type="checkbox"]:checked
+  + .selector
+  input[type="radio"]:not(:checked)
+  + label {
+  background-color: white;
+}
+
+
+.container label[for$="1-open"] p,
+.container label[for$="1-open"] label {
+  border-left: 3px solid black;
+}
+
+.container label[for$="3-open"] label,
+.container label[for$="6-open"] label,
+.container label[for$="9-open"] label,
+.container label[for$="3-open"] p,
+.container label[for$="6-open"] p,
+.container label[for$="9-open"] p{
+  border-right: 3px solid black;
+}
+
+.container label[for^="1-"] p,
+.container label[for^="1-"] label{
+  border-top: 3px solid black;
+}
+.container label[for^="3-"] label ,
+.container label[for^="6-"] label,
+.container label[for^="9-"] label,
+.container label[for^="3-"] p ,
+.container label[for^="6-"] p,
+.container label[for^="9-"] p {
+  border-bottom: 3px solid black;
+}
+/* .container :nth-child(27n) {
+  border-bottom: 3px solid black;
+} */
